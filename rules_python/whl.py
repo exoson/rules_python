@@ -94,6 +94,7 @@ class Wheel(object):
         return self._parse_metadata(f.read().decode("utf-8"))
 
   def entrypoints(self):
+      print("entrypoints")
       with zipfile.ZipFile(self.path(), 'r') as whl:
           try:
               with whl.open(os.path.join(self._dist_info(), 'entry_points.txt')) as f:

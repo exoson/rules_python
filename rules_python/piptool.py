@@ -357,6 +357,7 @@ parser.add_argument('--directory', action='store', default='.',
 # ---------------
 
 def genbuild(args):
+  print("Genbild")
   whl = Wheel(args.whl)
   extra_deps = args.add_dependency or []
   drop_deps = {d: None for d in args.drop_dependency or []}

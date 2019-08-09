@@ -28,6 +28,7 @@ def _report_progress(ctx, status):
 
 
 def _extract_wheel(ctx, wheel):
+    print("Extract method")
     python = ctx.path(ctx.attr.python) if ctx.attr.python else "python"
     args = [
         python,
@@ -125,6 +126,8 @@ def _download_or_build_wheel_impl(ctx):
 
     if ctx.attr.local_path:
         ctx.symlink(ctx.attr.local_path, ctx.attr.wheel_name)
+        result = ctx.execute(["cp", ctx.attr.local_path, ctx.attr.wheel_name], quiet=False)
+        print(result)
     elif ctx.attr.urls:
         ctx.download(url=ctx.attr.urls, sha256=ctx.attr.sha256, output=ctx.attr.wheel_name)
     else:
@@ -172,7 +175,9 @@ download_or_build_wheel = repository_rule(
 
 def _extract_wheel_impl(ctx):
     """Core implementation of extract_wheel."""
-    ctx.symlink(ctx.attr.wheel, ctx.attr.wheel.name)
+    print("Extract impl")
+    #ctx.symlink(ctx.attr.wheel, ctx.attr.wheel.name)
+    print("Extract impl")
     _extract_wheel(ctx, ctx.path(ctx.attr.wheel))
 
 _extract_wheel_attrs = {
