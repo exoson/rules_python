@@ -72,6 +72,7 @@ def _extract_wheel_impl(ctx):
         tools = tools,
         command = " && ".join(command),
         mnemonic = "ExtractWheel",
+        execution_requirements = {"no-remote": "1"}
     )
 
     return [

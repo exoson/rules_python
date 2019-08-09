@@ -145,7 +145,7 @@ class Wheel(object):
     return self.metadata().get('extras', [])
 
   def expand(self, directory):
-    with zipfile.ZipFile(self.path(), 'r') as whl:
+    with zipfile.ZipFile(open(self.path(), 'r')) as whl:
       whl.extractall(directory)
 
     # Fix puredata structure
